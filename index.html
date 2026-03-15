@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Europe 2026 — Chapman Family</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #1a1814;
+  --ink-muted: #5a5650;
+  --ink-faint: #9a9590;
+  --parchment: #f7f3ec;
+  --parchment-dark: #ede8df;
+  --gold: #b8922a;
+  --gold-light: #e8d5a0;
+  --norway: #2d5a8e;
+  --norway-light: #e8f0f8;
+  --paris: #8e2d4a;
+  --paris-light: #f8e8ee;
+  --rule: rgba(26,24,20,0.12);
+  --white: #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--parchment);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+a { color: var(--norway); }
+
+/* ── Layout ── */
+.site {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+}
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 3rem 0 2.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2.5rem;
+}
+.masthead-rule {
+  display: block;
+  height: 2px;
+  background: var(--gold);
+  width: 60px;
+  margin: 0 auto 1.5rem;
+  border: none;
+}
+.trip-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.trip-subtitle {
+  font-size: 1.1rem;
+  color: var(--ink-muted);
+  margin-top: 0.5rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+.travelers {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+}
+.traveler-pill {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--gold-light);
+  padding: 4px 16px;
+  border-radius: 20px;
+  background: var(--white);
+}
+
+/* ── Nav ── */
+.nav {
+  display: flex;
+  gap: 0;
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--parchment-dark);
+  flex-wrap: wrap;
+}
+.nav-item {
+  flex: 1;
+  min-width: 80px;
+  padding: 0.65rem 0.5rem;
+  text-align: center;
+  border-right: 1px solid var(--rule);
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+.nav-item:last-child { border-right: none; }
+.nav-item:hover { background: var(--white); }
+.nav-date {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.nav-city {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.92rem;
+  color: var(--ink);
+  margin-top: 1px;
+}
+
+/* ── Open items ── */
+.open-items {
+  background: var(--white);
+  border: 1px solid var(--gold-light);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 2.5rem;
+}
+.open-items-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.03em;
+}
+.open-item {
+  display: flex;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  align-items: baseline;
+}
+.open-item:last-child { border-bottom: none; padding-bottom: 0; }
+.open-item-num {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  min-width: 16px;
+}
+
+/* ── Section ── */
+.section {
+  margin-bottom: 3.5rem;
+  scroll-margin-top: 1.5rem;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--rule);
+}
+.section-flag {
+  width: 4px;
+  height: 1.5rem;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.flag-norway { background: var(--norway); }
+.flag-paris  { background: var(--paris); }
+.flag-transit { background: var(--gold); }
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+.section-dates {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+/* ── Logistics grid ── */
+.logistics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+.logistics-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+}
+.logistics-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+.logistics-detail {
+  font-size: 0.84rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+}
+.logistics-status {
+  display: inline-block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  padding: 2px 9px;
+  border-radius: 10px;
+  margin-bottom: 0.45rem;
+}
+.status-confirmed { background: #e6f0e6; color: #2a542a; border: 1px solid #b0d0b0; }
+.status-pending   { background: #f8f0e0; color: #7a5a10; border: 1px solid #e0c870; }
+
+/* ── Day grid ── */
+.day-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.day-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.day-card-header {
+  display: flex;
+  align-items: stretch;
+  cursor: pointer;
+  user-select: none;
+}
+.day-card-header:hover { background: #fdfcfa; }
+
+.day-date-col {
+  background: var(--parchment-dark);
+  padding: 0.8rem 0.9rem;
+  min-width: 68px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.day-month { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); }
+.day-num   { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 400; line-height: 1; color: var(--ink); }
+.day-dow   { font-size: 0.65rem; color: var(--ink-faint); margin-top: 2px; }
+
+.day-content {
+  padding: 0.75rem 1rem;
+  flex: 1;
+}
+.day-place {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--ink);
+}
+.day-summary {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  margin-top: 3px;
+  line-height: 1.45;
+  font-style: italic;
+}
+.day-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 7px;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 0.66rem;
+  letter-spacing: 0.07em;
+  padding: 2px 9px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+.tag-booked  { background: #e6f0e6; color: #2a542a; border: 1px solid #b0d0b0; }
+.tag-open    { background: #f8f0e0; color: #7a5a10; border: 1px solid #e0c870; }
+.tag-hike    { background: var(--norway-light); color: var(--norway); border: 1px solid #b0ccec; }
+.tag-paris   { background: var(--paris-light); color: var(--paris); border: 1px solid #e0b0c0; }
+.tag-travel  { background: #f0f0f8; color: #404080; border: 1px solid #c0c0e8; }
+
+.day-chevron {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.day-chevron.open { transform: rotate(180deg); }
+
+/* ── Expanded content ── */
+.day-expand {
+  display: none;
+  padding: 1rem 1.1rem 1.1rem;
+  border-top: 1px solid var(--rule);
+  background: #fdfcfa;
+}
+.day-expand.open { display: block; }
+
+.expand-section { margin-bottom: 1rem; }
+.expand-section:last-child { margin-bottom: 0; }
+.expand-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+.expand-text {
+  font-size: 0.91rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+}
+
+.dinner-note {
+  background: var(--paris-light);
+  border: 1px solid #e0b0c0;
+  border-radius: 6px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.88rem;
+  color: #6a1e38;
+  line-height: 1.55;
+  margin-top: 0.5rem;
+}
+.dinner-note strong {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paris);
+  margin-bottom: 3px;
+}
+
+/* ── Ideas ── */
+.ideas-section {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--rule);
+}
+.ideas-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--paris);
+  margin-bottom: 0.5rem;
+}
+.ideas-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0.6rem;
+}
+.ideas-list li {
+  font-size: 0.9rem;
+  color: var(--ink);
+  padding: 4px 0 4px 20px;
+  position: relative;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--rule);
+}
+.ideas-list li:last-child { border-bottom: none; }
+.ideas-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.55rem;
+  top: 8px;
+}
+.idea-author {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  margin-left: 6px;
+  font-style: italic;
+}
+.idea-empty {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  padding: 4px 0 8px;
+}
+.idea-input-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.idea-input {
+  flex: 1;
+  min-width: 160px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.92rem;
+  padding: 6px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+}
+.idea-input:focus { border-color: var(--gold); }
+.idea-who {
+  width: 100px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.92rem;
+  padding: 6px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+}
+.idea-who:focus { border-color: var(--gold); }
+.idea-btn {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--gold);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.idea-btn:hover { background: var(--gold); color: var(--white); }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+.footer-rule {
+  display: block;
+  height: 1px;
+  background: var(--gold);
+  width: 40px;
+  margin: 0 auto 1rem;
+  opacity: 0.35;
+  border: none;
+}
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+  .section-dates { display: none; }
+  .idea-input-row { flex-direction: column; }
+  .idea-who { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<div class="site">
+
+  <!-- Masthead -->
+  <div class="masthead">
+    <hr class="masthead-rule">
+    <h1 class="trip-title">Europe, Summer 2026</h1>
+    <p class="trip-subtitle">Norway &amp; Paris &mdash; July 20 &ndash; August 1</p>
+    <div class="travelers">
+      <span class="traveler-pill">Welles</span>
+      <span class="traveler-pill">Brooke</span>
+      <span class="traveler-pill">Elliott</span>
+      <span class="traveler-pill">Zo&euml;</span>
+    </div>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav" aria-label="Trip sections">
+    <a class="nav-item" href="#getting-there"><span class="nav-date">Jul 20</span><span class="nav-city">Depart</span></a>
+    <a class="nav-item" href="#oslo"><span class="nav-date">Jul 21–23</span><span class="nav-city">Oslo</span></a>
+    <a class="nav-item" href="#bergen"><span class="nav-date">Jul 23–27</span><span class="nav-city">Bergen</span></a>
+    <a class="nav-item" href="#paris"><span class="nav-date">Jul 28–Aug 1</span><span class="nav-city">Paris</span></a>
+    <a class="nav-item" href="#home"><span class="nav-date">Aug 1</span><span class="nav-city">Home</span></a>
+  </nav>
+
+  <!-- Open items -->
+  <div class="open-items">
+    <div class="open-items-title">Open items to resolve</div>
+    <div class="open-item"><span class="open-item-num">1</span><span>Oslo–Bergen train (Jul 23) — Rail Ninja handling, not yet ticketed. Peak summer route, follow up soon.</span></div>
+    <div class="open-item"><span class="open-item-num">2</span><span>Steinbergdalshytta (Jul 25) — booked in Welles's name. Confirm Zo&euml; is included in the 2-bed room price.</span></div>
+    <div class="open-item"><span class="open-item-num">3</span><span>DNT memberships — confirm Welles and Zo&euml; are enrolled.</span></div>
+    <div class="open-item"><span class="open-item-num">4</span><span>Oslo day (Jul 22) with Camilla, Georg &amp; Tavi — activities TBD. Who is organizing?</span></div>
+    <div class="open-item"><span class="open-item-num">5</span><span>Bergen: Fl&aring;m ferry books up in July — reserve soon.</span></div>
+    <div class="open-item"><span class="open-item-num">6</span><span>Aurland → Bergen (Jul 27) — Zo&euml; to choose: bus (~3 hrs, ~$35) or Norled ferry (~5 hrs, ~$125). Sunset ~10:30pm either way.</span></div>
+    <div class="open-item"><span class="open-item-num">7</span><span>Paris dinner #1 — Bistrot des Tournelles, Marais. Book now, fills up in July.</span></div>
+    <div class="open-item"><span class="open-item-num">8</span><span>Paris dinner #2 — Le Comptoir du Relais, Saint-Germain. Book now, fills up in July.</span></div>
+  </div>
+
+  <!-- Getting there -->
+  <section class="section" id="getting-there">
+    <div class="section-header">
+      <div class="section-flag flag-transit"></div>
+      <h2 class="section-title">Getting there</h2>
+      <span class="section-dates">July 20</span>
+    </div>
+    <div class="logistics-grid">
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">Seattle → Reykjav&iacute;k → Oslo</div>
+        <div class="logistics-detail">Welles, Brooke, Elliott<br>Alaska AS354 — SEA 6:35pm Jul 20<br>Arrives KEF 9:00am Jul 21<br>Icelandair 322 — KEF 10:40am → OSL 3:25pm</div>
+      </div>
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">Burlington → Oslo</div>
+        <div class="logistics-detail">Zo&euml;<br>United 4238 — BTV 7:42pm → IAD 9:30pm<br>United 932 — IAD 10:15pm → FRA 12:10pm Jul 21<br>United 9020 — FRA 1:20pm → OSL 3:25pm</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oslo -->
+  <section class="section" id="oslo">
+    <div class="section-header">
+      <div class="section-flag flag-norway"></div>
+      <h2 class="section-title">Oslo</h2>
+      <span class="section-dates">July 21–23 &mdash; 2 nights</span>
+    </div>
+    <div class="logistics-grid">
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">Clarion Hotel The Hub</div>
+        <div class="logistics-detail">2 rooms — all four travelers<br>Check-in Jul 21, check-out Jul 23</div>
+      </div>
+    </div>
+    <div class="day-grid" id="oslo-days"></div>
+  </section>
+
+  <!-- Bergen -->
+  <section class="section" id="bergen">
+    <div class="section-header">
+      <div class="section-flag flag-norway"></div>
+      <h2 class="section-title">Bergen &amp; the mountains</h2>
+      <span class="section-dates">July 23–27 &mdash; 4 nights</span>
+    </div>
+    <div class="logistics-grid">
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">Home Hotel Havnekontoret</div>
+        <div class="logistics-detail">Bergen — all travelers<br>Jul 23–28 (incl. Jul 27 reunion night)</div>
+      </div>
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">Hut-to-hut: Aurlandsdalen</div>
+        <div class="logistics-detail">
+          Welles + Zo&euml; — Jul 24–27<br>
+          Night 1: Geiterygghytta (order 12160)<br>
+          Night 2: Steinbergdalshytta (res. 2258)<br>
+          Night 3: &Oslash;sterb&oslash; (order 19329)
+        </div>
+      </div>
+    </div>
+    <div class="day-grid" id="bergen-days"></div>
+  </section>
+
+  <!-- Transit Bergen to Paris -->
+  <section class="section" id="bergen-paris">
+    <div class="section-header">
+      <div class="section-flag flag-transit"></div>
+      <h2 class="section-title">Bergen → Paris</h2>
+      <span class="section-dates">July 28</span>
+    </div>
+    <div class="logistics-grid">
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">Air France 1253</div>
+        <div class="logistics-detail">All four travelers<br>BGO 12:05pm → CDG 2:25pm Terminal 2F</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Paris -->
+  <section class="section" id="paris">
+    <div class="section-header">
+      <div class="section-flag flag-paris"></div>
+      <h2 class="section-title">Paris</h2>
+      <span class="section-dates">July 28 – August 1 &mdash; 4 nights</span>
+    </div>
+    <div class="logistics-grid">
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">VRBO — &Icirc;le Saint-Louis</div>
+        <div class="logistics-detail">Quai de Bourbon, Paris 4th<br>3BR/2BA — Seine river views<br>Sleeps 8 — kitchen, A/C, washer/dryer</div>
+      </div>
+    </div>
+    <div class="day-grid" id="paris-days"></div>
+  </section>
+
+  <!-- Home -->
+  <section class="section" id="home">
+    <div class="section-header">
+      <div class="section-flag flag-transit"></div>
+      <h2 class="section-title">Heading home</h2>
+      <span class="section-dates">August 1</span>
+    </div>
+    <div class="logistics-grid">
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">Zo&euml; — Paris → Burlington</div>
+        <div class="logistics-detail">United 55 — CDG 1:10pm → EWR 3:20pm<br>United 4384 — EWR 5:30pm → BTV 6:58pm</div>
+      </div>
+      <div class="logistics-card">
+        <span class="logistics-status status-confirmed">Confirmed</span>
+        <div class="logistics-title">Welles, Brooke, Elliott — Paris → Seattle</div>
+        <div class="logistics-detail">British Airways 0305<br>CDG 2:15pm → LHR 2:40pm Terminal 5<br>Onward connection to Seattle</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <hr class="footer-rule">
+    Chapman family &mdash; Europe 2026 &mdash; add your ideas to any day below
+  </footer>
+
+</div><!-- /site -->
+
+<script>
+const DAYS = {
+  oslo: [
+    {
+      date: '21', month: 'Jul', dow: 'Tue',
+      place: 'Arrive Oslo',
+      summary: 'All four travelers land at Gardermoen by 3:25pm. Settle in, orient, first evening together.',
+      tags: ['travel','booked'],
+      logistics: 'Welles, Brooke & Elliott: Icelandair 322 arrives 3:25pm. Zoë: United via Frankfurt also arrives 3:25pm. Check into the Clarion Hub together.',
+      dinner: null,
+      ideas: []
+    },
+    {
+      date: '22', month: 'Jul', dow: 'Wed',
+      place: 'Oslo — a full day',
+      summary: 'Full day in the city with local friends Camilla, Georg, and Tavi.',
+      tags: ['open'],
+      logistics: 'Activities TBD — coordinating with friends who live in Oslo. The city is walkable and compact. Worth exploring: Aker Brygge waterfront, Vigeland sculpture park in Frogner, Oslofjord waterfront, Grünerløkka neighborhood. Add your ideas below.',
+      dinner: null,
+      ideas: []
+    },
+    {
+      date: '23', month: 'Jul', dow: 'Thu',
+      place: 'Train: Oslo → Bergen',
+      summary: 'The Bergen Railway — one of Europe\'s great train journeys, crossing the Hardangervidda plateau at altitude.',
+      tags: ['open'],
+      logistics: 'Departs ~8:30am, arrives Bergen ~3pm — approximately 6 hours. Rail Ninja is handling the booking but tickets are not yet confirmed. This is a popular summer route; follow up soon.\n\nThe train passes through dramatic mountain scenery including the Hardangervidda plateau, Myrdal junction, and descends into the fjord landscape approaching Bergen.',
+      dinner: null,
+      ideas: []
+    }
+  ],
+  bergen: [
+    {
+      date: '23', month: 'Jul', dow: 'Thu',
+      place: 'First evening in Bergen',
+      summary: 'Arrive by train ~3pm. Find the waterfront, get your bearings, first dinner together.',
+      tags: ['booked'],
+      logistics: 'All four at Home Hotel Havnekontoret — a beautifully situated hotel right on the historic harbor. The fish market is a short walk and perfect for a first evening. Bryggen, the UNESCO-listed medieval wharf, is right there.',
+      dinner: null,
+      ideas: []
+    },
+    {
+      date: '24', month: 'Jul', dow: 'Fri',
+      place: 'Bergen / Hike begins — Geiterygghytta',
+      summary: 'The group splits. Welles & Zoë begin the Aurlandsdalen hut-to-hut. Brooke & Elliott explore Bergen — Bryggen, Fløyen, fjord, great waterfront and shopping.',
+      tags: ['hike','booked'],
+      logistics: 'Hikers (Welles + Zoë): Train to Finse then begin the Aurlandsdalen descent. Night at Geiterygghytta — a staffed, full-service mountain hut. 3-course dinner served at 7pm, breakfast buffet in the morning. Order 12160.\n\nBergen crew (Brooke + Elliott): Bryggen UNESCO wharf district, funicular up Mt. Fløyen for panoramic views of the city and fjord, fish market, the harbor area. Good shopping throughout — the streets around Bryggen and heading toward the center have a great mix of boutiques and local shops.',
+      dinner: null,
+      ideas: []
+    },
+    {
+      date: '25', month: 'Jul', dow: 'Sat',
+      place: 'Steinbergdalshytta / Bergen day 2',
+      summary: 'Hikers: day 2 through the valley. Steinbergdalshytta offers afternoon activities — trout fishing, cheese tasting, reindeer hike.',
+      tags: ['hike','booked'],
+      logistics: 'Hikers (Welles + Zoë): Geiterygghytta → Steinbergdalshytta. Reservation 2258 — staffed hut with meals included. If you arrive with daylight to spare, the hut offers afternoon activities: trout fishing, cheese tasting, and a reindeer hike.\n\nBergen crew: Consider the Flåm ferry — a famous fjord cruise through Nærøyfjord, one of the narrowest fjords in Europe. Fills up in July; book in advance. The Flåm Railway (Flåmsbana) from Myrdal to Flåm is also spectacular.',
+      dinner: null,
+      ideas: []
+    },
+    {
+      date: '26', month: 'Jul', dow: 'Sun',
+      place: 'Østerbø / Bergen day 3',
+      summary: 'Hikers: final day descending to Østerbø. Bergen crew: last full day.',
+      tags: ['hike','booked'],
+      logistics: 'Hikers (Welles + Zoë): Steinbergdalshytta → Aurlandsdalen Turisthytte Østerbø. Order 19329 — self-service hut with a well-stocked pantry. Last night of the hike.\n\nBergen crew: a more relaxed day — sauna, more of the waterfront, Fløyen if not yet visited, any unfinished exploring.',
+      dinner: null,
+      ideas: []
+    },
+    {
+      date: '27', month: 'Jul', dow: 'Mon',
+      place: 'Reunion in Bergen',
+      summary: 'Hikers descend from Aurland and make their way back. Full group reunites for the evening.',
+      tags: ['open'],
+      logistics: 'Zoë to choose the return from Aurland:\n— Vy Buss: direct bus ~3 hrs, ~$35/person, runs 3x daily\n— Norled ferry: scenic fjord ferry ~5 hrs, ~$125/person, departs Aurland 3:40pm\n\nSunset in Bergen on July 27 is around 10:30pm — plenty of daylight for either option. Reunion dinner together tonight.',
+      dinner: null,
+      ideas: []
+    }
+  ],
+  paris: [
+    {
+      date: '28', month: 'Jul', dow: 'Tue',
+      place: 'Arrive Paris',
+      summary: 'Land at CDG ~2:25pm. Settle into the Île Saint-Louis apartment. First evening — a short walk, the Seine, a simple dinner close by.',
+      tags: ['travel','booked'],
+      logistics: 'VRBO check-in after 2pm. Address: Quai de Bourbon, Paris 4th — Île Saint-Louis. 7-min walk to Notre-Dame (now restored), 3-min walk to Rue de Rivoli, steps from the Seine.\n\nNo agenda tonight. Walk out along the quai, find a bistro, decompress after Norway.',
+      dinner: null,
+      ideas: []
+    },
+    {
+      date: '29', month: 'Jul', dow: 'Wed',
+      place: 'The Marais & Bastille',
+      summary: 'A full day in the 4th — the old streets of the Marais, east toward Bastille. One of the best walking neighborhoods in Paris.',
+      tags: ['paris','open'],
+      logistics: 'Morning: walk into the Marais. Stop at 17 rue Vieille du Temple (a personal landmark). Explore Place des Vosges — the oldest planned square in Paris. Find the hidden garden of Hôtel de Sully (secret entrance in the corner of Place des Vosges, leads through to Rue de Rivoli). Lunch around Place du Marché Sainte-Catherine — a quiet square most visitors miss.\n\nAfternoon: medieval houses at 11 rue François Miron, continue east. Rue des Francs-Bourgeois and surrounding streets have excellent shopping — boutiques, concept stores, vintage. Keep walking toward Bastille through the old 4th.',
+      dinner: 'Dinner reservation — Bistrot des Tournelles: marble bar, art deco chandeliers, natural wines, classic French bistro cooking in the heart of the Marais/Bastille neighborhood. Book in advance — fills up in summer.',
+      ideas: []
+    },
+    {
+      date: '30', month: 'Jul', dow: 'Thu',
+      place: 'Montmartre',
+      summary: 'Metro up to Montmartre for the Dalí museum, cobblestone streets, and Sacré-Cœur. Wander back west and south toward the river.',
+      tags: ['paris','open'],
+      logistics: 'Morning: metro to Abbesses. Dalí museum (Espace Dalí) opens at 10am — about an hour, ~€16, less crowded than major museums. Walk Montmartre: Villa Léandre (a hidden alley tucked away from the crowds), Place du Tertre, Sacré-Cœur exterior.\n\nAfternoon: work your way west and south. Champs-Élysées if the mood strikes. Arc de Triomphe — shorter queue than the Eiffel Tower, great views from the top. Walk east along the Seine back toward home. Best Eiffel Tower view: from the Trocadéro side, across the water — no queue, no crowds.',
+      dinner: null,
+      ideas: []
+    },
+    {
+      date: '31', month: 'Jul', dow: 'Fri',
+      place: '5th & 6th arrondissements',
+      summary: 'The Left Bank at its best — Saint-Germain, the Voltaire statue, the Latin Quarter, Luxembourg Gardens. A beautiful final full day.',
+      tags: ['paris','open'],
+      logistics: 'Morning: cross to the Left Bank, walk toward the Musée d\'Orsay side. Find Square Honoré Champion — a quiet garden tucked behind the Institut de France, where the seated Voltaire statue stands. Worth pausing here. Continue into Saint-Germain: Odéon, the rue de Buci market street, L\'Avant Comptoir (standing wine and snack bar, local favorite).\n\nAfternoon: cross back toward Notre-Dame then up into the 5th. Shakespeare & Company bookshop. Up into the Latin Quarter proper: the Arènes de Lutèce (a real Roman arena from the 1st century, free, hidden in plain sight), Rue Mouffetard, Rue Férou (Rimbaud\'s poem inscribed on a wall). Luxembourg Gardens: find a reclining chair and stay as long as you like.\n\nMerci concept store (3rd arr.) is worth a detour if you want great shopping — design, fashion, a book café.',
+      dinner: 'Dinner reservation — Le Comptoir du Relais: a much-loved Saint-Germain institution, tucked in the 6th. Classic French cooking done beautifully. The perfect final dinner of the trip. Book well in advance.',
+      ideas: []
+    },
+    {
+      date: '1', month: 'Aug', dow: 'Sat',
+      place: 'Last morning — au revoir',
+      summary: 'Final breakfast at the VRBO: coffee and baguettes looking out at the Seine. Then CDG.',
+      tags: ['travel','booked'],
+      logistics: 'Zoë: CDG Terminal 1 — United 55 departs 1:10pm. Allow ~2 hrs travel time from Île Saint-Louis.\n\nWelles, Brooke, Elliott: CDG Terminal 2C — British Airways 0305 departs 2:15pm → London Heathrow Terminal 5, onward to Seattle.',
+      dinner: null,
+      ideas: []
+    }
+  ]
+};
+
+function storageKey(section, idx) {
+  return 'europe2026_ideas_' + section + '_' + idx;
+}
+
+function loadIdeas(section, idx) {
+  try {
+    return JSON.parse(localStorage.getItem(storageKey(section, idx)) || '[]');
+  } catch(e) { return []; }
+}
+
+function saveIdeas(section, idx, ideas) {
+  try {
+    localStorage.setItem(storageKey(section, idx), JSON.stringify(ideas));
+  } catch(e) {}
+}
+
+function renderIdeasList(ideas, listEl) {
+  listEl.innerHTML = '';
+  if (ideas.length === 0) {
+    const empty = document.createElement('li');
+    empty.className = 'idea-empty';
+    empty.textContent = 'No ideas yet — be the first to add one.';
+    listEl.appendChild(empty);
+    return;
+  }
+  ideas.forEach(function(idea) {
+    const li = document.createElement('li');
+    li.innerHTML = idea.text + '<span class="idea-author">\u2014 ' + idea.who + '</span>';
+    listEl.appendChild(li);
+  });
+}
+
+function buildDayCard(day, section, idx) {
+  const ideas = loadIdeas(section, idx);
+  const cardId = section + '_' + idx;
+
+  const tagsMap = { booked: 'confirmed', open: 'planning', hike: 'hiking', paris: 'paris day', travel: 'travel' };
+  const tagClass = { booked: 'tag-booked', open: 'tag-open', hike: 'tag-hike', paris: 'tag-paris', travel: 'tag-travel' };
+  const tagsHtml = (day.tags || []).map(function(t) {
+    return '<span class="tag ' + (tagClass[t] || 'tag-open') + '">' + (tagsMap[t] || t) + '</span>';
+  }).join('');
+
+  const dinnerHtml = day.dinner
+    ? '<div class="expand-section"><div class="dinner-note"><strong>Dinner reservation</strong>' + day.dinner + '</div></div>'
+    : '';
+
+  const card = document.createElement('div');
+  card.className = 'day-card';
+  card.innerHTML =
+    '<div class="day-card-header" onclick="toggleCard(\'' + cardId + '\')" aria-expanded="false">' +
+      '<div class="day-date-col">' +
+        '<div class="day-month">' + day.month + '</div>' +
+        '<div class="day-num">' + day.date + '</div>' +
+        '<div class="day-dow">' + day.dow + '</div>' +
+      '</div>' +
+      '<div class="day-content">' +
+        '<div class="day-place">' + day.place + '</div>' +
+        '<div class="day-summary">' + day.summary + '</div>' +
+        '<div class="day-tags">' + tagsHtml + '</div>' +
+      '</div>' +
+      '<div class="day-chevron" id="chev-' + cardId + '">&#x25be;</div>' +
+    '</div>' +
+    '<div class="day-expand" id="expand-' + cardId + '">' +
+      '<div class="expand-section">' +
+        '<div class="expand-label">Details</div>' +
+        '<div class="expand-text">' + day.logistics.replace(/\n/g, '<br>') + '</div>' +
+      '</div>' +
+      dinnerHtml +
+      '<div class="ideas-section">' +
+        '<div class="ideas-label">Ideas &amp; recommendations &mdash; add yours</div>' +
+        '<ul class="ideas-list" id="ideas-' + cardId + '"></ul>' +
+        '<div class="idea-input-row">' +
+          '<input class="idea-input" id="itxt-' + cardId + '" placeholder="Suggest something for this day\u2026" />' +
+          '<input class="idea-who" id="iwho-' + cardId + '" placeholder="Your name" />' +
+          '<button class="idea-btn" onclick="addIdea(\'' + section + '\',' + idx + ')">Add</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
+  renderIdeasList(ideas, card.querySelector('#ideas-' + cardId));
+  return card;
+}
+
+function toggleCard(cardId) {
+  var expand = document.getElementById('expand-' + cardId);
+  var chev   = document.getElementById('chev-' + cardId);
+  var header = expand.previousElementSibling;
+  var isOpen = expand.classList.toggle('open');
+  chev.classList.toggle('open', isOpen);
+  header.setAttribute('aria-expanded', isOpen);
+}
+
+function addIdea(section, idx) {
+  var cardId = section + '_' + idx;
+  var textEl = document.getElementById('itxt-' + cardId);
+  var whoEl  = document.getElementById('iwho-' + cardId);
+  var text = textEl.value.trim();
+  var who  = whoEl.value.trim() || 'Anonymous';
+  if (!text) { textEl.focus(); return; }
+  var ideas = loadIdeas(section, idx);
+  ideas.push({ text: text, who: who });
+  saveIdeas(section, idx, ideas);
+  renderIdeasList(ideas, document.getElementById('ideas-' + cardId));
+  textEl.value = '';
+  textEl.focus();
+}
+
+['oslo', 'bergen', 'paris'].forEach(function(section) {
+  var container = document.getElementById(section + '-days');
+  DAYS[section].forEach(function(day, idx) {
+    container.appendChild(buildDayCard(day, section, idx));
+  });
+});
+</script>
+
+</body>
+</html>
